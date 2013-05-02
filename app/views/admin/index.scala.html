@@ -1,0 +1,60 @@
+@()
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Admin</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/ui/jquery-ui-1.10.2.custom.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/ui.jqgrid.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jqgrid/i18n/grid.locale-en.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jqgrid/jquery.jqGrid.min.js")" type="text/javascript"></script>
+        <script>
+        $(document).ready(function() {
+          jQuery("#table").jqGrid({
+              url:'/invitee/list',
+              datatype: "json",
+              colNames:['English Name','Chinese Name', 'Relationship', 'Gender', 'Invited By', 'Invited #', 'Status', 'Going #', 'Table #', 'Gift Item', 'Gift Value'],
+              colModel:[
+                  {name:'englishName',index:'englishName', width:100},
+                  {name:'chineseName',index:'chineseName', width:100},
+                  {name:'relationship',index:'relationship', width:100},
+                  {name:'gender',index:'gender', width:100, editable:true, edittype:"select", editoptions:{value:"M:Male;F:Female"}},
+                  {name:'invitedBy',index:'invitedBy', width:100},
+                  {name:'invitedNum',index:'invitedNum', width:100, align:"right", sorttype:"int"},
+                  {name:'status',index:'status', width:100},
+                  {name:'goingNum',index:'goingNum', width:100, align:"right", sorttype:"int"},
+                  {name:'tableNum',index:'tableNum', width:100, align:"right", sorttype:"int"},
+                  {name:'giftItem',index:'giftItem', width:100},
+                  {name:'giftValue',index:'giftValue', width:100, align:"right", sorttype:"float"}
+              ],
+              rowNum:20,
+              pager: '#pager',
+              sortname: 'englishName',
+              viewrecords: true,
+              sortorder: "asc",
+              width: 1200,
+              height: "100%",
+              caption: "Invitations",
+              editurl: "/invitee/list"
+          });
+          jQuery("#table").jqGrid('navGrid','#pager',
+              {}, //options
+              {reloadAfterSubmit:false}, // edit options
+              {reloadAfterSubmit:false}, // add options
+              {reloadAfterSubmit:false}, // del options
+              {} // search options
+          );
+          //jQuery("#table").jqGrid('inlineNav',"#pager");
+        });
+
+        </script>
+    </head>
+    <body>
+        <table id="table"></table>
+        <div id="pager"></div>
+    </body>
+</html>
