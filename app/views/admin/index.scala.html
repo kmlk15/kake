@@ -5,6 +5,7 @@
 <html>
     <head>
         <title>Admin</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/ui/jquery-ui-1.10.2.custom.min.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/ui.jqgrid.css")">
@@ -17,19 +18,19 @@
           jQuery("#table").jqGrid({
               url:'/invitee/list',
               datatype: "json",
-              colNames:['English Name','Chinese Name', 'Relationship', 'Gender', 'Invited By', 'Invited #', 'Status', 'Going #', 'Table #', 'Gift Item', 'Gift Value'],
+              colNames:['English Name','Chinese Name', 'Relationship', 'Gender', 'Invited By', 'Invited #', 'RSVP', 'Going #', 'Table #', 'Gift Item', 'Gift Value'],
               colModel:[
-                  {name:'englishName',index:'englishName', width:100},
-                  {name:'chineseName',index:'chineseName', width:100},
-                  {name:'relationship',index:'relationship', width:100},
+                  {name:'englishName',index:'englishName', width:100, editable:true},
+                  {name:'chineseName',index:'chineseName', width:100, editable:true},
+                  {name:'relationship',index:'relationship', width:100, editable:true, edittype:"select", editoptions:{value:"Family:Family;Relative:Relative;Church:Church;Friend:Friend"}},
                   {name:'gender',index:'gender', width:100, editable:true, edittype:"select", editoptions:{value:"M:Male;F:Female"}},
-                  {name:'invitedBy',index:'invitedBy', width:100},
-                  {name:'invitedNum',index:'invitedNum', width:100, align:"right", sorttype:"int"},
-                  {name:'status',index:'status', width:100},
-                  {name:'goingNum',index:'goingNum', width:100, align:"right", sorttype:"int"},
-                  {name:'tableNum',index:'tableNum', width:100, align:"right", sorttype:"int"},
-                  {name:'giftItem',index:'giftItem', width:100},
-                  {name:'giftValue',index:'giftValue', width:100, align:"right", sorttype:"float"}
+                  {name:'invitedBy',index:'invitedBy', width:100, editable:true, edittype:"select", editoptions:{value:"Both:Both;Kayan:Kayan;Keith:Keith"}},
+                  {name:'invitedNum',index:'invitedNum', width:100, align:"right", sorttype:"int", editable:true, editoptions:{defaultValue:"1"}},
+                  {name:'status',index:'status', width:100, editable:true, edittype:"select", editoptions:{value:"Not Yet:Not Yet;Accepted:Accepted;Declined:Declined"}},
+                  {name:'goingNum',index:'goingNum', width:100, align:"right", sorttype:"int", editable:true, editoptions:{defaultValue:"0"}},
+                  {name:'tableNum',index:'tableNum', width:100, align:"right", sorttype:"int", editable:true, editoptions:{defaultValue:"0"}},
+                  {name:'giftItem',index:'giftItem', width:100, editable:true},
+                  {name:'giftValue',index:'giftValue', width:100, align:"right", sorttype:"float", editable:true, editoptions:{defaultValue:"0"}}
               ],
               rowNum:20,
               pager: '#pager',
@@ -39,7 +40,7 @@
               width: 1200,
               height: "100%",
               caption: "Invitations",
-              editurl: "/invitee/list"
+              editurl: "/invitee/action"
           });
           jQuery("#table").jqGrid('navGrid','#pager',
               {}, //options

@@ -5,10 +5,9 @@
 # Home page
 GET     /                           controllers.Application.index
 GET     /admin/index                controllers.Admin.index
-GET     /invitee/add                controllers.api.InviteeController.add
-GET     /invitee/get/:id            controllers.api.InviteeController.get(id: String)
 GET     /invitee/list               controllers.api.InviteeController.list
-GET     /invitee/update             controllers.api.InviteeController.update
+POST    /invitee/action             controllers.api.InviteeController.action
+GET     /invitee/get/:id            controllers.api.InviteeController.get(id: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
