@@ -1,0 +1,116 @@
+@white: #FFFFFF;
+@lightgrey: #EEEEEE; 
+@grey: #4D4D4F;
+@red: #CC0000; 
+@black: #000000;
+
+.rounded (@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+.clearFloats {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  _font-size: 0;
+}
+
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
+  float: right;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 760px;
+  height: 100%;
+  background-color: @black;
+}
+
+a {
+  text-decoration: none;
+}
+
+#background {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-color: @lightgrey;
+  background-image: url('/assets/images/background-0.jpg');
+  background-position: center;
+  background-attachment: fixed;
+  background-repear: no-repeat;
+  background-size: cover;
+}
+
+#frame {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#headerFrame {
+  .floatLeft;
+}
+
+#spacer {
+  height: 15px;
+  width: 40%;
+  opacity: 0;
+}
+
+#header {
+  .floatLeft;
+  padding: 0 30px 10px 10px;
+  background-color: @grey;
+  opacity:0.8;
+  color: @white;
+  font-size: 40px;
+  font-family: "Comic Sans MS";
+  font-style: italic;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  width: 300px;
+  text-align: center;
+  span.red {
+    color: @red;
+  }
+  span.date {
+    display: block;
+    font-size: 16px;
+    color: @red;
+  }
+}
+
+#contentFrame {
+  .floatRight;
+  width: 40%;
+  height: 75%;
+  margin: 0 5%;
+  padding: 0 15px;
+  //background-color: @black;
+  opacity: 0.8;
+  color: @white;
+}
+
+#content {
+  width: 40%;
+  position: absolute;
+  bottom: 0px;
+  h3 {
+    text-align: center;
+  }
+}

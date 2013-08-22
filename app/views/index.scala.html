@@ -1,7 +1,138 @@
-@(message: String)
+@()
 
-@main("Welcome to Play 2.1") {
-    
-    @play20.welcome(message)
-    
-}
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Kayan & Keith</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" media="screen and (orientation:portrait)" href="@routes.Assets.at("stylesheets/home-s.css")">
+    <link rel="stylesheet" media="screen and (min-width: 1200px) and (orientation:landscape)" href="@routes.Assets.at("stylesheets/home-l.css")">
+    <link rel="stylesheet" media="screen and (min-width: 760px) and (max-width: 1200px) and (orientation:landscape)" href="@routes.Assets.at("stylesheets/home-m.css")">
+    <link rel="stylesheet" media="screen and (max-width: 760px) and (orientation:landscape)" href="@routes.Assets.at("stylesheets/home-s.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/home/jquery-ui.min.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    <script src="@routes.Assets.at("javascripts/jquery-1.9.1.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.at("javascripts/jquery-ui.min.js")" type="text/javascript"></script>
+    <script>
+      $(document).ready(function() {
+    	var cur = 0;  
+    	var max = 2;  
+    	
+    	function change() {
+    	  $('#background').fadeOut(1000, function () {
+            cur = (cur + 1) % max;
+            $(this).css("background-image", "url('/assets/images/background-" + cur + ".jpg')");
+            $(this).fadeIn(1000);
+    	  });
+    	  setTimeout(change,15000);
+    	}
+    	
+    	setTimeout(change,10000);
+    	
+        $( "#content" ).accordion({ 
+        	collapsible: true,
+        	heightStyle: "fill",
+        	icons: null,
+        	active: false
+        });
+      });    	  
+    </script>
+  </head>
+  <body>
+    <div id="background"></div>
+    <div id="frame">
+      <div id="headerFrame">
+        <div id="spacer"></div>
+        <div id="header">
+          Kayan <span class="red">&</span> Keith <span class="red date">03.01.2014</span>
+        </div>
+      </div>
+      <div id="contentFrame">
+        <div id="content">
+          <h3>Wedding</h3>
+          <div>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+            <p>
+              This is Wedding
+            </p>
+          </div>
+          <h3>RSVP</h3>
+          <div>
+            <p>
+              This is RSVP
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,3 +2,7 @@ This is your new Play 2.1 application
 =====================================
 
 This file will be packaged with your application, when using `play dist`.
+
+rsync -arvz -e "ssh -i /Users/Keith/.ssh/nolendo.pem" . ec2-user@ec2-50-112-194-29.us-west-2.compute.amazonaws.com:kake/
+
+rsync -arvz -e "ssh -i /Users/Keith/.ssh/nolendo.pem" target ec2-user@54.244.112.32:kake

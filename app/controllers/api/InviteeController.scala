@@ -39,5 +39,11 @@ object InviteeController extends Controller {
 
     Ok(Json.toJson(result))
   }
+  
+  def total() = Action {
+    val result = invitee.total()
+    
+    Ok(Json.toJson(result))
+  }
 
 }
