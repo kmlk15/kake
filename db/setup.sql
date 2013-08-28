@@ -15,3 +15,10 @@ mealPref varchar(100),
 giftItem varchar(255),
 giftValue double default 0
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+
+create table guestbook (
+  id bigint primary key,
+  name varchar(255) not null,
+  message text
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
