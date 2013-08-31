@@ -3,6 +3,7 @@
 @grey: #4D4D4F;
 @red: #CC0000; 
 @black: #000000;
+@pink: #FE2EC8;
 
 .rounded (@radius: 5px) {
   border-radius: @radius;
@@ -29,6 +30,7 @@
 
 html {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -41,6 +43,26 @@ body {
 
 a {
   text-decoration: none;
+}
+
+h1 {
+  font-size: 1.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+h2 {
+  margin-top: 1.3em;
+  font-size: 1.1em;
+  border-bottom: 1px dotted @pink;
+  width: 100%;
+  span {
+    .floatRight;
+    display: block;
+    padding-top: 0.7em;
+    font-size: 0.6em;
+    font-style: italic;
+  }
 }
 
 #background {
@@ -86,12 +108,12 @@ a {
   width: 500px;
   text-align: center;
   span.red {
-    color: @red;
+    color: @pink;
   }
   span.date {
     display: block;
     font-size: 16px;
-    color: @red;
+    color: @pink;
   }
 }
 
