@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index
+GET     /health                     controllers.Health.index
 GET     /admin/index                controllers.Admin.index
 GET     /invitee/list               controllers.api.InviteeController.list
 POST    /invitee/action             controllers.api.InviteeController.action

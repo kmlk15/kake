@@ -786,7 +786,7 @@ body .ui-tooltip {
 /* Component containers
 ----------------------------------*/
 .ui-widget {
-	font-family: Verdana,Segoe UI,Arial,sans-serif;
+	font-family: 'Elsie', cursive,Verdana,Segoe UI,Arial,sans-serif;
 	font-size: 1em;
 }
 .ui-widget .ui-widget {
@@ -796,20 +796,20 @@ body .ui-tooltip {
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-	font-family: Segoe UI,Arial,sans-serif;
+	font-family: 'Elsie', cursive,Segoe UI,Arial,sans-serif;
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #666666;
-	background: #000000 url(images/ui-bg_inset-soft_25_000000_1x100.png) 50% bottom repeat-x;
-	color: #ffffff;
+	border: 1px solid #4D4D4F;
+	background: #ffffff;
+	color: #4D4D4F;
 }
 .ui-widget-content a {
-	color: #ffffff;
+	color: #4D4D4F;
 }
 .ui-widget-header {
 	border: 1px solid #333333;
-	background: #333333 url(images/ui-bg_gloss-wave_25_333333_500x100.png) 50% 50% repeat-x;
+	background: #333333;
 	color: #ffffff;
 	font-weight: bold;
 }
@@ -822,15 +822,15 @@ body .ui-tooltip {
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-	border: 1px solid #666666;
-	background: #4D4D4F;
+	border: 1px solid #4D4D4F;
+	background: #ffffff;
 	font-weight: bold;
-	color: #eeeeee;
+	color: #FE2EC8;
 }
 .ui-state-default a,
 .ui-state-default a:link,
 .ui-state-default a:visited {
-	color: #eeeeee;
+	color: #4D4D4F;
 	text-decoration: none;
 }
 .ui-state-hover,
@@ -839,10 +839,10 @@ body .ui-tooltip {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: 1px solid #333333;
-	background: #444444;
+	border: 1px solid #4D4D4F;
+	background: #eeeeee;
 	font-weight: bold;
-	color: #ffffff;
+	color: #FE2EC8;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -862,7 +862,7 @@ body .ui-tooltip {
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
-	color: #ffffff;
+	color: #4D4D4F;
 	text-decoration: none;
 }
 
@@ -871,9 +871,9 @@ body .ui-tooltip {
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
-	border: 1px solid #cccccc;
-	background: #eeeeee;
-	color: #2e7db2;
+	border: 1px solid #4D4D4F;
+	background: #ffffff;
+	color: #4D4D4F;
 }
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,

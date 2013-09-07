@@ -1,0 +1,1 @@
+rsync -arvz -e "ssh -i /Users/Keith/.ssh/nolendo.pem" --exclude '.git*' . ec2-user@kayankeith.com:kake/

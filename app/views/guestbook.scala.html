@@ -1,13 +1,6 @@
 @(list: List[GuestbookDisplay])
 
-<ul>
-
 @list.map { entry =>
-  <li>
-    @entry.name <br/>
-    @entry.message <br/>
-    @entry.date 
-  </li>
+  <h2>@entry.name<span>@entry.date </span></h2>
+  <p>@entry.message</p>
 }
-
-</ul>
