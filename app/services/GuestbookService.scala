@@ -51,7 +51,7 @@ trait GuestbookServiceComponentImpl extends GuestbookServiceComponent {
         val sql = SQL("select * from guestbook order by id desc")
         sql().map { row =>
 	      val id = row[Long]("id")
-	      val dt = (new DateTime(id)).toString("MMM dd, yyyy HH:mm:ss")
+	      val dt = (new DateTime(id)).toString("MMM d, yyyy")
 	      val name = row[String]("name")
 	      val message = row[String]("message")
 	      

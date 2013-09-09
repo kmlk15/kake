@@ -12,14 +12,17 @@ object GuestbookController extends Controller {
 
   def add = Action { implicit request =>
     form.GuestbookForm.bindFromRequest.fold(
-      errors => Status(404),
+      errors => true,
       entry => {
         guestbook.add(entry)
-        Status(200)
+        true
       })
+    
+    val result = guestbook.list()
+    Ok(views.html.guestbook(result))
   }
 
-  def list() = Action {
+  def list = Action {
     val result = guestbook.list()
 
     Ok(views.html.guestbook(result))

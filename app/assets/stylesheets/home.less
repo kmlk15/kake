@@ -1,0 +1,228 @@
+@white: #FFFFFF;
+@lightgrey: #EEEEEE; 
+@grey: #4D4D4F;
+@red: #CC0000; 
+@black: #000000;
+@pink: #FE2EC8;
+
+.rounded (@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+.clearFloats {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  _font-size: 0;
+}
+
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
+  float: right;
+}
+
+html {
+  width:100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width:100%;
+  height: 100%;
+  background-color: @black;
+  letter-spacing: 1px;
+}
+
+a {
+  text-decoration: none;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px dashed @pink;
+}
+
+h1 {
+  font-size: 80px;
+  font-family: 'Miss Fajardose', cursive;
+  font-style: italic;
+  margin: 0px;
+  padding: 0px;
+  color: @grey;
+  text-shadow: 2px 2px @pink;
+  span.and {
+    font-size: 50px;
+    color: @pink;
+    text-shadow: none;
+  }
+}
+
+h2 {
+  font-size: 30px;
+  font-family: 'Cinzel Decorative', cursive;
+  margin: 0px;
+  padding: 0px;
+  color: @pink;
+}
+
+h3 {
+  font-size: 20px;
+  font-family: 'Cinzel Decorative', cursive;
+  margin: 0px;
+  padding: 0px;
+  border-bottom: 1px dotted @pink;
+}
+
+h4 {
+  font-size: 16px;
+  font-family: 'Eagle Lake', cursive;
+  margin: 0px;
+  padding: 0px;
+  color: @black;
+}
+
+#background {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-color: @lightgrey;
+  //background-image: url('/assets/images/background-1.jpg');
+  background-image: url('/assets/images/background-2.jpg');
+  background-position: center 10%;
+  background-attachment: fixed;
+  background-repear: no-repeat;
+  background-size: cover;
+}
+
+#frame {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  font-family: 'Eagle Lake', cursive;
+}
+
+#topspacer {
+  width: 0;
+  position: relative;
+  margin: 30% auto 0px;
+}
+
+#bottomspacer {
+  width: 0;
+  position: relative;
+  margin: 10px auto 0px;
+}
+
+#pull {
+  width: 0px;
+  border-bottom: 30px solid @red !important;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 30px solid transparent;
+  margin: 0 auto;
+}
+
+.center (@width: 500px) {
+  width: @width;
+  margin: 0 auto;
+  padding: 20px 50px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0px 3px 5px @grey;
+}
+
+.top {
+  border-radius: 10px 10px 0 0;
+}
+
+.bottom {
+  border-radius: 0 0 10px 10px;
+}
+
+
+.wide {
+  .center;
+  background-color: @white;
+  color: @grey;
+  opacity:0.8;  
+}
+
+.narrow {
+  .center(480px); 
+  background-color: @black; 
+  color: @white;
+  opacity:0.9;
+}
+
+.left {
+  text-align: left;
+}
+
+p.guestname {
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  span {
+    font-size: 0.8em;
+  }
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  vertical-align: top;
+  color: @pink;
+}
+
+input[type="text"] {
+  width: 160px;
+  padding: 0 5px;
+  .rounded(5px);
+  font-family: 'Eagle Lake', cursive;
+  font-size: 14px;
+  color: @black;
+  border: 1px solid @grey;
+  background-color: @lightgrey;
+}
+
+input[type="button"] {
+  width: 160px;
+  padding: 0 5px;
+  background-color: @pink;
+  color: @white;
+  font-family: 'Eagle Lake', cursive;
+  font-size: 14px;
+  border: 1px solid @white;
+  .rounded(5px);
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+  overflow: auto;
+  width: 95%;
+  padding: 0 5px;
+  .rounded(5px);
+  font-family: 'Eagle Lake', cursive;
+  font-size: 14px;
+  color: @black;
+  border: 1px solid @grey;
+  background-color: @lightgrey;
+  
+}

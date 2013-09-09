@@ -1,6 +1,7 @@
 @(list: List[GuestbookDisplay])
 
 @list.map { entry =>
-  <h2>@entry.name<span>@entry.date </span></h2>
-  <p>@entry.message</p>
+  <hr/>
+  <p class="left">@entry.message</p>
+  <p class="guestname">@entry.name <span>- @entry.date</span></p>
 }

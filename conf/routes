@@ -5,6 +5,11 @@
 # Home page
 GET     /                           controllers.Application.index
 GET     /health                     controllers.Health.index
+
+POST    /guestbook/add              controllers.api.GuestbookController.add
+GET     /guestbook/list             controllers.api.GuestbookController.list                 
+
+# Admin page
 GET     /admin/index                controllers.Admin.index
 GET     /invitee/list               controllers.api.InviteeController.list
 POST    /invitee/action             controllers.api.InviteeController.action

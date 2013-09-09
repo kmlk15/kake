@@ -11,16 +11,46 @@ $(document).ready(function() {
     setTimeout(change, 15000);
   }
 
-  setTimeout(change, 10000);
+  //setTimeout(change, 10000);
 
-  $("#content").accordion({
-    collapsible : true,
-    heightStyle : "fill",
-    icons : null,
-    active : false
+  function guestpost() {
+    var name = $("#guestname").val();
+    var message = $("#guestmessage").val();
+    if (name.length > 0 && message.length > 0) {
+      var id = (new Date()).getTime();
+      var data = {
+          id : id,
+          name : name,
+          message : message
+      }
+      $.ajax({
+        type    :   'POST',
+        datatype:   'html',
+        url     :   '/guestbook/add',
+        data    :   data,    
+        success :   function(d) {
+          $("#guestname").val("");
+          $("#guestmessage").val("");
+          $("#guestbook").html(d);
+        }
+      });
+    }
+  }
+  
+  $("#guestpost").on("click", function(e) {
+    guestpost();
   });
   
-  $(window).resize(function() {
-    $("#content").accordion('refresh');
-  });
+  function guestlist() {
+    $.ajax({
+      type    :   'GET',
+      datatype:   'html',
+      url     :   '/guestbook/list',
+      success :   function(d) {
+        $("#guestbook").html(d);
+      }
+    });
+  }
+  
+  guestlist();
 });
