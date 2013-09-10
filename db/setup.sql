@@ -22,3 +22,15 @@ create table guestbook (
   name varchar(255) not null,
   message text
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+
+create table invitee (
+  id bigint primary key,
+  gid bigint,
+  leader int default 0,
+  name varchar(255) not null,
+  ceremony int default 0,
+  reception int default 0,
+  tnum int,
+  meal int default 0
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci;

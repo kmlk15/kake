@@ -9,4 +9,11 @@ object Admin extends Controller {
     Ok(views.html.admin.index())
   }
   
+  def add = Action {
+    Ok(views.html.admin.add())
+  }
+  
+  def edit = Action {
+    Ok(views.html.admin.edit())
+  }
 }

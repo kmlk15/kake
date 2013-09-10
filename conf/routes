@@ -11,8 +11,9 @@ GET     /guestbook/list             controllers.api.GuestbookController.list
 
 # Admin page
 GET     /admin/index                controllers.Admin.index
+GET     /admin/add                  controllers.Admin.add
 GET     /invitee/list               controllers.api.InviteeController.list
-POST    /invitee/action             controllers.api.InviteeController.action
+POST    /invitee/add                controllers.api.InviteeController.add
 GET     /invitee/get/:id            controllers.api.InviteeController.get(id: String)
 GET     /invitee/total              controllers.api.InviteeController.total
 

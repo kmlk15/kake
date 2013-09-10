@@ -12,4 +12,15 @@ object form {
       "id" -> of[Long],
       "name" -> text,
       "message" -> text)(Guestbook.apply)(Guestbook.unapply))
+      
+  val InviteeForm = Form(
+    mapping(
+      "id" -> of[Long],
+      "gid" -> of[Long], 
+      "leader" -> number, 
+      "name" -> text, 
+      "ceremony" -> number, 
+      "reception" -> number, 
+      "tnum" -> number, 
+      "meal" -> number)(Invitee.apply)(Invitee.unapply))
 }
