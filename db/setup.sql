@@ -27,7 +27,6 @@ create table guestbook (
 create table invitee (
   id bigint primary key,
   gid bigint,
-  leader int default 0,
   name varchar(255) not null,
   ceremony int default 0,
   reception int default 0,

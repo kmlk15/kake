@@ -1,4 +1,4 @@
-@(invitee: Invitee)
+@(invitee: Invitee, leaders: List[Leader])
 
 <!DOCTYPE html>
 
@@ -9,12 +9,56 @@
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
     <script src="@routes.Assets.at("javascripts/jquery-1.9.1.js")" type="text/javascript"></script>
+    <script>
+      $(document).ready(function() {
+    	  $("#gid").val(@invitee.gid);
+        $("#ceremony").val(@invitee.ceremony);
+        $("#reception").val(@invitee.reception);
+        $("#meal").val(@invitee.meal);
+        
+        function submit() {
+          var id = $("#id").val();
+          var gid = $("#gid").val();
+          var name = $("#name").val();
+          var ceremony = $("#ceremony").val();
+          var reception = $("#reception").val();
+          var tnum = $("tnum").val();
+          var meal = $("meal").val();
+          var data = {
+            id : id,
+            gid : gid,
+            name : name,
+            ceremony : ceremony,
+            reception : reception,
+            tnum : tnum,
+            meal : meal
+          }
+          $.ajax({
+            type    :   'POST',
+            datatype:   'html',
+            url     :   '/invitee/edit',
+            data    :   data,    
+            success :   function(d) {
+          	  $("#info").html(d);
+            }
+          });
+        }
+      });
+    </script>
   </head>
   <body>
     <h3>Edit Invitee</h3>
     <div>
+      <input type="hidden" id="id" value="@invitee.id">
       <label>Name:</label>
       <input type="text" id="name" value="@invitee.name">
+      <br/>
+      <label>Group:</label>
+      <select id="gid">
+        @leaders.map { entry =>
+          <option value="@entry.id">@entry.name</option>
+        }
+      </select>
       <br/>
       <label>Ceremony:</label>
       <select id="ceremony">
@@ -33,7 +77,7 @@
       </select>
       <br/>
       <label>Table Number:</label>
-      <input type="text" id="tnum">
+      <input type="text" id="tnum" value="@invitee.tnum">
       <br/>
       <label>Meal Preference:</label>
       <select id="meal">

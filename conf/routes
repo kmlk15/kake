@@ -3,19 +3,19 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                           controllers.Home.index
 GET     /health                     controllers.Health.index
 
-POST    /guestbook/add              controllers.api.GuestbookController.add
-GET     /guestbook/list             controllers.api.GuestbookController.list                 
+POST    /guestbook/add              controllers.Guestbook.add
+GET     /guestbook/list             controllers.Guestbook.list                 
 
 # Admin page
-GET     /admin/index                controllers.Admin.index
-GET     /admin/add                  controllers.Admin.add
-GET     /invitee/list               controllers.api.InviteeController.list
-POST    /invitee/add                controllers.api.InviteeController.add
-GET     /invitee/get/:id            controllers.api.InviteeController.get(id: String)
-GET     /invitee/total              controllers.api.InviteeController.total
+GET     /admin/index                controllers.Invitee.index
+GET     /invitee/list               controllers.Invitee.list
+POST    /invitee/add                controllers.Invitee.add
+POST    /invitee/edit               controllers.Invitee.edit
+GET     /invitee/get/:id            controllers.Invitee.get(id: String)
+GET     /invitee/total              controllers.Invitee.total
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

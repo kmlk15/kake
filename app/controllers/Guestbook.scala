@@ -1,4 +1,4 @@
-package controllers.api
+package controllers
 
 import play.api._
 import play.api.mvc._
@@ -6,7 +6,7 @@ import play.api.libs.json._
 import base._
 import models._
 
-object GuestbookController extends Controller {
+object Guestbook extends Controller {
 
   val guestbook = registry guestbookService
 

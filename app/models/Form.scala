@@ -17,7 +17,6 @@ object form {
     mapping(
       "id" -> of[Long],
       "gid" -> of[Long], 
-      "leader" -> number, 
       "name" -> text, 
       "ceremony" -> number, 
       "reception" -> number, 
