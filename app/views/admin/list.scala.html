@@ -1,2 +1,12 @@
-@(list: List[Invitee])
+@(list: List[InviteeDisplay])
 
+@list.map { entry =>
+  <div>
+    <span>@entry.name</span>
+    <span>@entry.tnum</span>
+    <span>@entry.ceremony</span>
+    <span>@entry.reception</span>
+    <span>@entry.meal</span>
+  </div>
+
+}
