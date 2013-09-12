@@ -2,7 +2,7 @@
 
 @list.map { entry =>
   <div>
-    <span>@entry.name</span>
+    <span class="name @if(!entry.isLeader) { indent }" id="@entry.id">@entry.name</span>
     <span>@entry.tnum</span>
     <span>@entry.ceremony</span>
     <span>@entry.reception</span>

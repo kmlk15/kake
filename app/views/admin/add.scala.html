@@ -2,75 +2,51 @@
 
 <script>
   $(document).ready(function() {    
-    function submit() {
-      var id = $("#id").val();
-      var gid = $("#gid").val();
-      var name = $("#name").val();
-      var ceremony = $("#ceremony").val();
-      var reception = $("#reception").val();
-      var tnum = $("tnum").val();
-      var meal = $("meal").val();
-      var data = {
-        id : id,
-        gid : gid,
-        name : name,
-        ceremony : ceremony,
-        reception : reception,
-        tnum : tnum,
-        meal : meal
-      }
-      $.ajax({
-        type    :   'POST',
-        datatype:   'html',
-        url     :   '/invitee/add',
-        data    :   data,    
-        success :   function(d) {
-          $("#info").html(d);
-        }
-      });
-    }
+
   });
 </script>
 <h3>Add Invitee</h3>
-<div>
-  <label>Name:</label>
-  <input type="text" id="name">
-  <br/>
-  <label>Group:</label>
-  <select id="gid">
-    <option value="0">-- New Group --</option>
-    @leaders.map { entry =>
-      <option value="@entry.id">@entry.name</option>
-    }
-  </select>
-  <br/>
-  <label>Ceremony:</label>
-  <select id="ceremony">
-    <option value="0">Not Invited</option>
-    <option value="1">Invited</option>
-    <option value="2">Not Going</option>
-    <option value="3">Going</option>
-  </select>
-  <br/>
-  <label>Reception:</label>
-  <select id="reception">
-    <option value="0">Not Invited</option>
-    <option value="1">Invited</option>
-    <option value="2">Not Going</option>
-    <option value="3">Going</option>
-  </select>
-  <br/>
-  <label>Table Number:</label>
-  <input type="text" id="tnum" value="0">
-  <br/>
-  <label>Meal Preference:</label>
-  <select id="meal">
-    <option value="0">Not Selected</option>
-    <option value="1">Filet Mignon</option>
-    <option value="2">Salmon</option>
-    <option value="3">Vegetarian</option>
-    <option value="4">Kids Meal</option>
-  </select>
-  <br/>
-  <input type="button" id="submit" value="Submit">  
-</div>
+
+<label>Name:</label>
+<input type="text" id="name">
+<br/>
+<label>Group:</label>
+<select id="gid">
+  <option value="0">-- Own Group --</option>
+  @leaders.map { entry =>
+    <option value="@entry.id">@entry.name</option>
+  }
+</select>
+<br/>
+<label>Ceremony:</label>
+<select id="ceremony">
+  <option value="0">-- Not Invited --</option>
+  <option value="1">Invited</option>
+  <option value="2">Declined</option>
+  <option value="3">Going</option>
+</select>
+<br/>
+<label>Reception:</label>
+<select id="reception">
+  <option value="0">-- Not Invited --</option>
+  <option value="1">Invited</option>
+  <option value="2">Declined</option>
+  <option value="3">Going</option>
+</select>
+<br/>
+<label>Table Number:</label>
+<input type="text" id="tnum" value="0">
+<br/>
+<label>Meal Preference:</label>
+<select id="meal">
+  <option value="0">-- Not Selected --</option>
+  <option value="1">Filet Mignon</option>
+  <option value="2">Salmon</option>
+  <option value="3">Vegetarian</option>
+  <option value="4">Kids Meal</option>
+</select>
+<br/>
+<label></label>
+<input type="button" id="add" value="Submit">  
+<div class="spacer"></div>
+<div class="divider"></div>

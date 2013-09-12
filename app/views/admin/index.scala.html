@@ -6,22 +6,141 @@
   <head>
     <title>Admin</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/admin.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
     <script src="@routes.Assets.at("javascripts/jquery-1.9.1.js")" type="text/javascript"></script>
     <script>
       $(document).ready(function() {
-    	  function list() {
-            $.ajax({
-              type    :   'GET',
-              datatype:   'html',
-              url     :   '/invitee/list',
-              data    :   data,    
-              success :   function(d) {
-                $("#list").html(d);
-              }
-            });
+        function list() {
+          $.ajax({
+            type    :   'GET',
+            datatype:   'html',
+            url     :   '/invitee/list',   
+            success :   function(d) {
+              $(".name").off("click");
+              $("#list").html(d);
+              $(".name").on("click", function(e) {
+                var id = $(this).attr("id");
+                get(id);
+              });
+            }
+          });
         }
+
+        function reset() {
+          $("#add").off("click");
+          $("#edit").off("click");
+          $("#cancel").off("click");
+        }
+        
+        function get(id) {
+          $.ajax({
+            type    :   'GET',
+            datatype:   'html',
+            url     :   '/invitee/get/' + id ,   
+            success :   function(d) {
+              reset();
+              $("#info").html(d);
+              $("#edit").on("click", function(e) {
+                edit();
+              });
+              $("#cancel").on("click", function(e) {
+                cancel();
+              });
+            }
+          });
+        }
+                
+        function add() {
+          var id = (new Date()).getTime();
+          var gid = $("#gid").val();
+          gid = gid == 0 ? id : gid;
+          var name = $("#name").val();
+          var ceremony = $("#ceremony").val();
+          var reception = $("#reception").val();
+          var tnum = $("#tnum").val();
+          var meal = $("#meal").val();
+          var data = {
+            id : id,
+            gid : gid,
+            name : name,
+            ceremony : ceremony,
+            reception : reception,
+            tnum : tnum,
+            meal : meal
+          };
+          $.ajax({
+            type    :   'POST',
+            datatype:   'html',
+            url     :   '/invitee/add',
+            data    :   data,    
+            success :   function(d) {
+              reset();
+              $("#info").html(d);
+              $("#add").on("click", function(e) {
+                add();
+              });
+              list();
+            }
+          });
+        }
+                
+        function edit() {
+          var id = $("#id").val();
+          var gid = $("#gid").val();
+          var name = $("#name").val();
+          var ceremony = $("#ceremony").val();
+          var reception = $("#reception").val();
+          var tnum = $("#tnum").val();
+          var meal = $("#meal").val();
+          var data = {
+            id : id,
+            gid : gid,
+            name : name,
+            ceremony : ceremony,
+            reception : reception,
+            tnum : tnum,
+            meal : meal
+          };
+          $.ajax({
+            type    :   'POST',
+            datatype:   'html',
+            url     :   '/invitee/edit',
+            data    :   data,    
+            success :   function(d) {
+              reset();
+              $("#info").html(d);
+              $("#add").on("click", function(e) {
+                add();
+              });
+              list();
+            }
+          });
+        }
+        
+        function cancel() {
+          $.ajax({
+            type    :   'POST',
+            datatype:   'html',
+            url     :   '/invitee/add', 
+            success :   function(d) {
+              $("#info").html(d);
+              $("#add").on("click", function(e) {
+                add();
+              });
+            }
+          });
+        }
+        
+        $("#add").on("click", function(e) {
+          add();
+        });
+        
+        $(".name").on("click", function(e) {
+          var id = $(this).attr("id");
+          get(id);
+        });
+        
       });
     </script>
   </head>
@@ -29,7 +148,13 @@
     <div id="info">
       @add(leaders)
     </div>
-    <hr/>
+    <div id="header">
+      <span>Name</span>
+      <span>Table</span>
+      <span>Ceremony</span>
+      <span>Reception</span>
+      <span>Meal Choice</span>
+    </div>
     <div id="list">
       @list(invitees)
     </div>

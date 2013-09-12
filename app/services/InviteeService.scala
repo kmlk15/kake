@@ -13,7 +13,7 @@ trait InviteeServiceComponent {
 
     def add(invitee: Invitee): Boolean
 
-    def update(invitee: Invitee): Boolean
+    def edit(invitee: Invitee): Boolean
 
     def get(id: String): Invitee
 
@@ -31,7 +31,7 @@ trait InviteeServiceComponentImpl extends InviteeServiceComponent {
 
   override val inviteeService = new InviteeService {
 
-    val rsvp : List[String] = List("Not Invited", "Invited", "Not Going", "Going")
+    val rsvp : List[String] = List("Not Invited", "Invited", "Declined", "Going")
     val meals : List[String] = List("Not Selected", "Filet Mignon", "Salmon", "Vegetarian", "Kids Meal")
     
     override def add(invitee: Invitee): Boolean = {
@@ -55,7 +55,7 @@ trait InviteeServiceComponentImpl extends InviteeServiceComponent {
       }
     }
 
-    override def update(invitee: Invitee): Boolean = {
+    override def edit(invitee: Invitee): Boolean = {
       try {
         DB.withConnection("kk")(implicit conn => {
           SQL("update invitee set gid = {gid}, name = {name}, ceremony = {ceremony}, reception = {reception}, tnum = {tnum}, meal = {meal} where id = {id};")
@@ -88,7 +88,7 @@ trait InviteeServiceComponentImpl extends InviteeServiceComponent {
 
     override def list(): List[InviteeDisplay] = {
       DB.withConnection("kk")(implicit conn => {
-        val sql = SQL("select * from invitee order by tnum asc")
+        val sql = SQL("select * from invitee order by gid asc, id asc, tnum asc")
         sql().map { row =>
           _buildDisplay(row)
         } toList

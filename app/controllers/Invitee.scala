@@ -7,34 +7,46 @@ import base._
 import models._
 
 object Invitee extends Controller {
-  
+
   val invitee = registry inviteeService
-  
+
   def index = Action {
     val invitees = invitee.list
     val leaders = invitee.leaders
-    
+
     Ok(views.html.admin.index(invitees, leaders))
   }
 
   def add = Action { implicit request =>
-  	form.InviteeForm.bindFromRequest.fold(
-      errors => true,
+    form.InviteeForm.bindFromRequest.fold(
+      errors => {
+        play.Logger.error(errors.toString)
+        true
+      },
       entry => {
         invitee.add(entry)
         true
       })
-    
-    
+
     val leaders = invitee.leaders
-    
-  	Ok(views.html.admin.add(leaders))
+
+    Ok(views.html.admin.add(leaders))
   }
-  
+
   def edit = Action { implicit request =>
+    form.InviteeForm.bindFromRequest.fold(
+      errors => {
+        play.Logger.error(errors.toString)
+        true
+      },
+      entry => {
+        invitee.edit(entry)
+        true
+      })
+
     val leaders = invitee.leaders
-    
-  	Ok(views.html.admin.add(leaders))
+
+    Ok(views.html.admin.add(leaders))
   }
 
   def get(id: String) = Action {
@@ -49,10 +61,10 @@ object Invitee extends Controller {
 
     Ok(views.html.admin.list(invitees))
   }
-  
+
   def total() = Action {
     val result = invitee.total()
-    
+
     Ok(Json.toJson(result))
   }
 
