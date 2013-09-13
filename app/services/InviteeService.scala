@@ -21,7 +21,7 @@ trait InviteeServiceComponent {
 
     def leaders(): List[Leader]
 
-    def total(): Map[String, String]
+    def total(): Total
   }
 }
 
@@ -31,7 +31,7 @@ trait InviteeServiceComponentImpl extends InviteeServiceComponent {
 
   override val inviteeService = new InviteeService {
 
-    val rsvp : List[String] = List("Not Invited", "Invited", "Declined", "Going")
+    val rsvp : List[String] = List("Not Invited", "Not Replied", "Declined", "Going")
     val meals : List[String] = List("Not Selected", "Filet Mignon", "Salmon", "Vegetarian", "Kids Meal")
     
     override def add(invitee: Invitee): Boolean = {
@@ -107,21 +107,36 @@ trait InviteeServiceComponentImpl extends InviteeServiceComponent {
       })
     }
 
-    override def total(): Map[String, String] = {
+    override def total(): Total = {
       DB.withConnection("kk")(implicit conn => {
-        val sql = SQL("""
-            select invitedBy, sum(invitedNum) as t from invitees group by invitedBy
-        	union all
-        	select 'Total', sum(invitedNum) as t from invitees;
-        	""")
+        val totalRow = SQL("select count(*) as t from invitee;").apply().head
+        val totalCount = totalRow[Long]("t")
 
-        var map: Map[String, String] = Map.empty[String, String]
-        sql().foreach { row =>
-          map ++= Map(row[String]("invitedBy") -> row[java.math.BigDecimal]("t").intValue.toString)
-          //map ++= Map(row[String]("invitedBy") -> row[Int]("t").toString)
+        val csql = SQL("select ceremony, count(ceremony) as s from invitee group by ceremony;")
+        var cmap: Map[Int, Long] = Map.empty[Int, Long]
+        csql().foreach { row =>
+          cmap ++= Map(row[Int]("ceremony") -> row[Long]("s"))
+        }
+        
+        val rsql = SQL("select reception, count(reception) as s from invitee group by reception;")
+        var rmap: Map[Int, Long] = Map.empty[Int, Long]
+        rsql().foreach { row =>
+          rmap ++= Map(row[Int]("reception") -> row[Long]("s"))
         }
 
-        map
+        val msql = SQL("select meal, count(meal) as s from invitee group by meal;")
+        var mmap: Map[Int, Long] = Map.empty[Int, Long]
+        msql().foreach { row =>
+          mmap ++= Map(row[Int]("meal") -> row[Long]("s"))
+        }
+        
+        val cTotal = _getMap(cmap, 1) + _getMap(cmap, 2) + _getMap(cmap, 3)
+        val rTotal = _getMap(rmap, 1) + _getMap(rmap, 2) + _getMap(rmap, 3)
+        
+        Total(totalCount, 
+            cTotal, _getMap(cmap, 1), _getMap(cmap, 2), _getMap(cmap, 3), 
+            rTotal, _getMap(rmap, 1), _getMap(rmap, 2), _getMap(rmap, 3), 
+            _getMap(mmap, 0), _getMap(mmap, 1), _getMap(mmap, 2), _getMap(mmap, 3), _getMap(mmap, 4))
       })
 
     }
@@ -151,5 +166,13 @@ trait InviteeServiceComponentImpl extends InviteeServiceComponent {
       new InviteeDisplay(id, name, isLeader, ceremony, reception, tnum, meal)
     }
 
+    private def _getMap(map: Map[Int, Long], index: Int): Long = {
+      try {
+        map(index)
+      } catch {
+        case e: Exception => 0L
+      }
+    }
+    
   }
 }

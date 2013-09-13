@@ -13,8 +13,9 @@ object Invitee extends Controller {
   def index = Action {
     val invitees = invitee.list
     val leaders = invitee.leaders
+    val total = invitee.total
 
-    Ok(views.html.admin.index(invitees, leaders))
+    Ok(views.html.admin.index(invitees, leaders, total))
   }
 
   def add = Action { implicit request =>
@@ -65,7 +66,7 @@ object Invitee extends Controller {
   def total() = Action {
     val result = invitee.total()
 
-    Ok(Json.toJson(result))
+    Ok(views.html.admin.summary(result))
   }
 
 }

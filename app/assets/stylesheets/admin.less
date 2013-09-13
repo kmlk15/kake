@@ -94,6 +94,7 @@ input[type="button"] {
 }
 
 #info {
+  min-width: 1255px;
   width: 98%;
   height: 300px;
   position: fixed;
@@ -108,14 +109,27 @@ input[type="button"] {
   }
 } 
 
+#input {
+  .floatLeft;
+  padding-right: 30px;
+  border-right: 1px dashed @pink;
+}
+
+#summary {
+  .floatLeft;
+  padding-left: 30px;
+}
+
 #header {
   width: 98%;
+  min-width: 1255px;
   height: 30px;
   position: fixed;
   top: 300px;
   z-index: 3;
   background-color: @white;
   color: @red;
+  font-weight: bold;
   span {
     width: 200px;
     display: inline-block;
@@ -126,6 +140,7 @@ input[type="button"] {
   top: 330px;
   position: absolute;
   width: 98%;
+  min-width: 1255px;  
   overflow: auto;
   z-index: 1;
   background-color: @white;
@@ -146,4 +161,10 @@ input[type="button"] {
 
 .indent {
   text-indent: 20px;
+}
+
+.summarySection {
+  .floatLeft;
+  width: 250px;
+  margin-right: 20px;
 }

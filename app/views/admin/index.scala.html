@@ -1,4 +1,4 @@
-@(invitees: List[InviteeDisplay], leaders: List[Leader])
+@(invitees: List[InviteeDisplay], leaders: List[Leader], total: Total)
 
 <!DOCTYPE html>
 
@@ -23,6 +23,18 @@
                 var id = $(this).attr("id");
                 get(id);
               });
+              summary();
+            }
+          });
+        }
+        
+        function summary() {
+          $.ajax({
+            type    :   'GET',
+            datatype:   'html',
+            url     :   '/invitee/total',   
+            success :   function(d) {
+              $("#summary").html(d);
             }
           });
         }
@@ -40,7 +52,7 @@
             url     :   '/invitee/get/' + id ,   
             success :   function(d) {
               reset();
-              $("#info").html(d);
+              $("#input").html(d);
               $("#edit").on("click", function(e) {
                 edit();
               });
@@ -76,7 +88,7 @@
             data    :   data,    
             success :   function(d) {
               reset();
-              $("#info").html(d);
+              $("#input").html(d);
               $("#add").on("click", function(e) {
                 add();
               });
@@ -109,7 +121,7 @@
             data    :   data,    
             success :   function(d) {
               reset();
-              $("#info").html(d);
+              $("#input").html(d);
               $("#add").on("click", function(e) {
                 add();
               });
@@ -124,7 +136,7 @@
             datatype:   'html',
             url     :   '/invitee/add', 
             success :   function(d) {
-              $("#info").html(d);
+              $("#input").html(d);
               $("#add").on("click", function(e) {
                 add();
               });
@@ -146,7 +158,11 @@
   </head>
   <body>
     <div id="info">
-      @add(leaders)
+      <div id="input">@add(leaders)</div>
+      <div id="summary">@summary(total)</div>
+      <div class="clearFloats"></div>
+      <div class="spacer"></div>
+      <div class="divider"></div>
     </div>
     <div id="header">
       <span>Name</span>

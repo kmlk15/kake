@@ -1,0 +1,41 @@
+@(total: Total)
+
+<script>
+  $(document).ready(function() {    
+
+  });
+</script>
+<h3>Summary</h3>
+<div>
+  <label>Total:</label> @total.total
+</div>
+<div class="summarySection">
+  <label>Ceremony Total:</label> @total.cTotal
+  <br/>
+  <label>Ceremony Not Replied:</label> @total.cNotReplied
+  <br/>
+  <label>Ceremony Going:</label> @total.cGoing
+  <br/>
+  <label>Ceremony Declined:</label> @total.cDeclined
+</div>
+<div class="summarySection">
+  <label>Reception Total:</label> @total.rTotal
+  <br/>
+  <label>Reception Not Replied:</label> @total.rNotReplied
+  <br/>
+  <label>Reception Going:</label> @total.rGoing
+  <br/>
+  <label>Reception Declined:</label> @total.rDeclined
+</div>
+<div class="summarySection">
+  <label>Meal - Not Selected:</label> @total.mNotSelected
+  <br/>
+  <label>Meal - Filet Mignon:</label> @total.mBeef
+  <br/>
+  <label>Meal - Salmon:</label> @total.mFish
+  <br/>
+  <label>Meal - Vegetarian:</label> @total.mVeg
+  <br/>
+  <label>Meal - Kids:</label> @total.mKids
+</div>
+<div class="clearFloats"></div>

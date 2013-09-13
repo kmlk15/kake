@@ -12,3 +12,7 @@ case class InviteeDisplay(id: Long, name: String, isLeader: Boolean, ceremony: S
 
 case class Leader(id: Long, name: String)
 
+case class Total(total: Long, 
+    cTotal: Long, cNotReplied: Long, cDeclined: Long, cGoing: Long, 
+    rTotal: Long, rNotReplied: Long, rDeclined: Long, rGoing: Long, 
+    mNotSelected: Long, mBeef: Long, mFish: Long, mVeg: Long, mKids: Long)
